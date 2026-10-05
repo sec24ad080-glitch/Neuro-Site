@@ -1,0 +1,105 @@
+{
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "subjects": "Subjects",
+    "games": "Games",
+    "chatbot": "Ask NeuroLex",
+    "writing": "Writing",
+    "parent": "Parent View",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "welcome": "Welcome back",
+    "points": "Points",
+    "level": "Level",
+    "streak": "Day Streak",
+    "completed": "Completed",
+    "modules": "Modules",
+    "recentActivity": "Recent Activity",
+    "quickStart": "Quick Start",
+    "progress": "Your Progress",
+    "keepGoing": "Keep going, you're doing great!"
+  },
+  "subjects": {
+    "math": "Mathematics",
+    "science": "Science",
+    "english": "English",
+    "chooseSubject": "Choose a Subject",
+    "yourProgress": "Your Progress"
+  },
+  "quiz": {
+    "question": "Question",
+    "of": "of",
+    "correct": "Correct! 🎉",
+    "wrong": "Try Again! 💪",
+    "submit": "Submit Answer",
+    "next": "Next Question",
+    "finish": "Finish Quiz",
+    "score": "Your Score",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "speakQuestion": "Listen to Question",
+    "speakAnswer": "Speak Answer",
+    "completed": "Quiz Completed!",
+    "accuracy": "Accuracy",
+    "pointsEarned": "Points Earned"
+  },
+  "chatbot": {
+    "title": "Ask NeuroLex",
+    "placeholder": "Type your question here...",
+    "send": "Send",
+    "thinking": "NeuroLex is thinking...",
+    "offline": "Offline Mode",
+    "clearChat": "Clear Chat"
+  },
+  "login": {
+    "title": "Welcome to NeuroLex! 🧠",
+    "subtitle": "Choose your profile or create a new one",
+    "newProfile": "New Profile",
+    "enterName": "Enter your name",
+    "chooseAvatar": "Choose your avatar",
+    "start": "Start Learning!",
+    "existingProfiles": "Your Profiles"
+  },
+  "games": {
+    "title": "Fun Games",
+    "mathPuzzle": "Math Puzzle",
+    "quickQuiz": "Speed Quiz",
+    "wordMatch": "Word Match",
+    "play": "Play",
+    "score": "Score",
+    "best": "Best"
+  },
+  "writing": {
+    "title": "Writing Helper",
+    "placeholder": "Start typing here... I'll help you!",
+    "suggestions": "Suggestions",
+    "dyslexicFont": "Dyslexia-Friendly Font",
+    "clearText": "Clear"
+  },
+  "badges": {
+    "firstSteps": "First Steps",
+    "mathWizard": "Math Wizard",
+    "scienceStar": "Science Star",
+    "wordsmith": "Wordsmith",
+    "streakHero": "Streak Hero",
+    "perfectScore": "Perfect Score",
+    "speedDemon": "Speed Demon",
+    "curious": "Curious Mind"
+  },
+  "general": {
+    "loading": "Loading...",
+    "back": "Back",
+    "save": "Save",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "offline": "You're offline",
+    "offlineMsg": "Don't worry — NeuroLex works offline too!"
+  }
+}

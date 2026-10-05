@@ -1,0 +1,95 @@
+{
+  "nav": {
+    "home": "होम",
+    "dashboard": "डैशबोर्ड",
+    "subjects": "विषय",
+    "games": "खेल",
+    "chatbot": "NeuroLex से पूछें",
+    "writing": "लेखन सहायता",
+    "parent": "अभिभावक दृश्य",
+    "profile": "प्रोफाइल",
+    "logout": "लॉगआउट"
+  },
+  "dashboard": {
+    "welcome": "वापसी पर स्वागत है",
+    "points": "अंक",
+    "level": "स्तर",
+    "streak": "दिन की लकीर",
+    "completed": "पूर्ण",
+    "modules": "मॉड्यूल",
+    "recentActivity": "हाल की गतिविधि",
+    "quickStart": "जल्दी शुरू करें",
+    "progress": "आपकी प्रगति",
+    "keepGoing": "आगे बढ़ते रहो, तुम बेहतरीन कर रहे हो!"
+  },
+  "subjects": {
+    "math": "गणित",
+    "science": "विज्ञान",
+    "english": "अंग्रेजी",
+    "chooseSubject": "एक विषय चुनें",
+    "yourProgress": "आपकी प्रगति"
+  },
+  "quiz": {
+    "question": "प्रश्न",
+    "of": "का",
+    "correct": "सही! 🎉",
+    "wrong": "फिर कोशिश! 💪",
+    "submit": "जवाब सबमिट करें",
+    "next": "अगला प्रश्न",
+    "finish": "समाप्त करें",
+    "score": "आपका स्कोर",
+    "difficulty": "कठिनाई",
+    "easy": "आसान",
+    "medium": "मध्यम",
+    "hard": "कठिन",
+    "speakQuestion": "प्रश्न सुनें",
+    "speakAnswer": "जवाब बोलें",
+    "completed": "क्विज़ पूर्ण!",
+    "accuracy": "सटीकता",
+    "pointsEarned": "अर्जित अंक"
+  },
+  "chatbot": {
+    "title": "NeuroLex से पूछें",
+    "placeholder": "यहाँ अपना सवाल लिखें...",
+    "send": "भेजें",
+    "thinking": "NeuroLex सोच रहा है...",
+    "offline": "ऑफलाइन मोड",
+    "clearChat": "साफ करें"
+  },
+  "login": {
+    "title": "NeuroLex में आपका स्वागत! 🧠",
+    "subtitle": "अपना प्रोफाइल चुनें या नया बनाएं",
+    "newProfile": "नया प्रोफाइल",
+    "enterName": "अपना नाम दर्ज करें",
+    "chooseAvatar": "अपना अवतार चुनें",
+    "start": "पढ़ाई शुरू करें!",
+    "existingProfiles": "आपके प्रोफाइल"
+  },
+  "games": {
+    "title": "मजेदार खेल",
+    "mathPuzzle": "गणित पहेली",
+    "quickQuiz": "स्पीड क्विज़",
+    "wordMatch": "शब्द मिलान",
+    "play": "खेलें",
+    "score": "स्कोर",
+    "best": "सर्वश्रेष्ठ"
+  },
+  "writing": {
+    "title": "लेखन सहायक",
+    "placeholder": "यहाँ टाइप करना शुरू करें... मैं मदद करूँगा!",
+    "suggestions": "सुझाव",
+    "dyslexicFont": "डिस्लेक्सिया-अनुकूल फ़ॉन्ट",
+    "clearText": "साफ करें"
+  },
+  "general": {
+    "loading": "लोड हो रहा है...",
+    "back": "वापस",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "close": "बंद करें",
+    "offline": "आप ऑफलाइन हैं",
+    "offlineMsg": "चिंता मत करो — NeuroLex ऑफलाइन भी काम करता है!"
+  }
+}

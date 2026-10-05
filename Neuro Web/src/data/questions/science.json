@@ -1,0 +1,76 @@
+{
+  "modules": [
+    {
+      "id": "sci_m1",
+      "title": "Concept Learning & Cause-Effect",
+      "emoji": "🔬",
+      "description": "Understand the world around you and see how things connect.",
+      "questions": [
+        {
+          "id": "s1q1", "difficulty": "easy",
+          "question": "What do plants need to grow?",
+          "emoji": "🌱",
+          "options": ["Juice", "Water and Sunlight", "Candy", "Milk"],
+          "answer": "Water and Sunlight",
+          "explanation": "Plants 'drink' water and use sunlight to make their food!"
+        },
+        {
+          "id": "s1q2", "difficulty": "easy",
+          "question": "What happens if you leave ice in the sun?",
+          "emoji": "☀️",
+          "options": ["It gets harder", "It turns to gas", "It melts", "It catches fire"],
+          "answer": "It melts",
+          "explanation": "The heat from the sun makes the solid ice melt into liquid water. That's cause and effect!"
+        },
+        {
+          "id": "s1q3", "difficulty": "medium",
+          "question": "Which of these is a mammal?",
+          "emoji": "🐕",
+          "options": ["Shark", "Snake", "Dog", "Spider"],
+          "answer": "Dog",
+          "explanation": "Dogs are mammals because they have fur and drink milk when they are babies."
+        },
+        {
+          "id": "s1q4", "difficulty": "hard",
+          "question": "What force keeps us on the ground?",
+          "emoji": "🌍",
+          "options": ["Magnetism", "Gravity", "Friction", "Electricity"],
+          "answer": "Gravity",
+          "explanation": "Gravity is the invisible pull from the Earth that keeps everything from floating away!"
+        }
+      ]
+    },
+    {
+      "id": "sci_m2",
+      "title": "Micro-experiments & Recall",
+      "emoji": "🧪",
+      "description": "Imagine fun experiments and test your memory.",
+      "questions": [
+        {
+          "id": "s2q1", "difficulty": "easy",
+          "question": "If you mix blue and yellow paint, what color do you get?",
+          "emoji": "🎨",
+          "options": ["Red", "Purple", "Green", "Black"],
+          "answer": "Green",
+          "explanation": "Mixing blue and yellow makes green! Try it out on paper!"
+        },
+        {
+          "id": "s2q2", "difficulty": "medium",
+          "question": "What happens when you mix baking soda and vinegar?",
+          "emoji": "🌋",
+          "options": ["It turns to ice", "It bubbles and fizzes", "Nothing happens", "It changes color to pink"],
+          "answer": "It bubbles and fizzes",
+          "explanation": "It creates a chemical reaction that makes gas bubbles. This is how you make a volcano project!"
+        },
+        {
+          "id": "s2q3", "difficulty": "hard",
+          "question": "What gas do humans breathe out?",
+          "emoji": "🌬️",
+          "options": ["Oxygen", "Nitrogen", "Carbon Dioxide", "Helium"],
+          "answer": "Carbon Dioxide",
+          "explanation": "We breathe in Oxygen and breathe out Carbon Dioxide. Plants do the opposite!"
+        }
+      ]
+    }
+  ]
+}
