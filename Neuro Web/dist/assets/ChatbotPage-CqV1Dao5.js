@@ -1,4 +1,4 @@
-import{u as we,a as Se,l as q,h as ve,r as l,m as ke,n as Ee,o as Te,p as xe,c as ee,q as Ae,_ as Le,s as _,t as je,v as H,w as Ie,d as te,e as Ne,j as n,x as Re,i as Oe}from"./index-BHQxDQwr.js";const Ce={math:[{id:"math-1",subject:"math",title:"Counting to 10",emoji:"🔢",level:1,content:`Let's count together! Numbers help us know how many things there are.
+import{u as we,a as Se,l as q,h as ve,r as l,m as ke,n as Ee,o as Te,p as xe,c as ee,q as Ae,_ as Le,s as _,t as je,v as H,w as Ie,d as te,e as Ne,j as n,x as Re,i as Oe}from"./index-CunuMdR4.js";const Ce={math:[{id:"math-1",subject:"math",title:"Counting to 10",emoji:"🔢",level:1,content:`Let's count together! Numbers help us know how many things there are.
       
 1 — One apple 🍎
 2 — Two stars ⭐⭐

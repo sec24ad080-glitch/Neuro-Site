@@ -268,9 +268,9 @@ export default function Navbar() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 6,
-              padding: "4px 8px",
-              borderRadius: 12,
+              gap: 8,
+              padding: "4px 10px",
+              borderRadius: 14,
               background: "rgba(255, 255, 255, 0.04)",
               border: "1px solid rgba(255, 255, 255, 0.08)",
             }}
@@ -282,33 +282,34 @@ export default function Navbar() {
               aria-label="Select Webpage Language"
               style={{
                 border: "none",
-                background: "rgba(99, 102, 241, 0.25)",
+                background: "rgba(99, 102, 241, 0.18)",
                 color: "#ffffff",
-                padding: "4px 8px",
-                borderRadius: 8,
+                padding: "7px 12px",
+                borderRadius: 10,
                 fontSize: "0.78rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 outline: "none",
+                minWidth: settings.language === "ta" ? 110 : 88,
               }}
             >
               <option
                 value="en"
                 style={{ background: "#111128", color: "#fff" }}
               >
-                🇬🇧 EN
+                EN
               </option>
               <option
                 value="ta"
                 style={{ background: "#111128", color: "#fff" }}
               >
-                🇮🇳 தமிழ்
+                தமிழ்
               </option>
               <option
                 value="hi"
                 style={{ background: "#111128", color: "#fff" }}
               >
-                🇮🇳 हिन्दी
+                हिन्दी
               </option>
             </select>
             <button
@@ -320,24 +321,21 @@ export default function Navbar() {
               }
               aria-label="Toggle Theme"
               style={{
-                border: "none",
+                border: "1px solid rgba(255,255,255,0.06)",
                 background:
                   settings.theme === "light"
-                    ? "rgba(99, 102, 241, 0.25)"
-                    : "transparent",
-                color:
-                  settings.theme === "light"
-                    ? "var(--indigo)"
-                    : "rgba(241, 245, 249, 0.7)",
-                padding: "4px 8px",
-                borderRadius: 8,
-                fontSize: "0.78rem",
+                    ? "rgba(99, 102, 241, 0.18)"
+                    : "rgba(255,255,255,0.04)",
+                color: "rgba(241, 245, 249, 0.9)",
+                padding: "6px 10px",
+                borderRadius: 10,
+                fontSize: "0.74rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
             >
-              {settings.theme === "light" ? "☀️ Light" : "🌙 Dark"}
+              {settings.theme === "light" ? "Light" : "Dark"}
             </button>
             <button
               onClick={toggleReducedMotion}
@@ -347,22 +345,20 @@ export default function Navbar() {
               aria-label="Toggle Reduced Motion"
               aria-pressed={settings.reducedMotion}
               style={{
-                border: "none",
+                border: "1px solid rgba(255,255,255,0.06)",
                 background: settings.reducedMotion
-                  ? "rgba(16, 185, 129, 0.3)"
-                  : "transparent",
-                color: settings.reducedMotion
-                  ? "#34d399"
-                  : "rgba(241, 245, 249, 0.7)",
-                padding: "4px 8px",
-                borderRadius: 8,
-                fontSize: "0.78rem",
+                  ? "rgba(16, 185, 129, 0.2)"
+                  : "rgba(255,255,255,0.04)",
+                color: "rgba(241, 245, 249, 0.9)",
+                padding: "6px 10px",
+                borderRadius: 10,
+                fontSize: "0.74rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
             >
-              {settings.reducedMotion ? "⏹️ Calm" : "🏃 Motion"}
+              {settings.reducedMotion ? "Calm" : "Motion"}
             </button>
             <button
               onClick={toggleDyslexicFont}
@@ -374,22 +370,20 @@ export default function Navbar() {
               aria-label="Toggle Dyslexia-Friendly Font"
               aria-pressed={settings.dyslexicFont}
               style={{
-                border: "none",
+                border: "1px solid rgba(255,255,255,0.06)",
                 background: settings.dyslexicFont
-                  ? "rgba(99, 102, 241, 0.3)"
-                  : "transparent",
-                color: settings.dyslexicFont
-                  ? "#818cf8"
-                  : "rgba(241, 245, 249, 0.7)",
-                padding: "4px 8px",
-                borderRadius: 8,
-                fontSize: "0.78rem",
+                  ? "rgba(99, 102, 241, 0.2)"
+                  : "rgba(255,255,255,0.04)",
+                color: "rgba(241, 245, 249, 0.9)",
+                padding: "6px 10px",
+                borderRadius: 10,
+                fontSize: "0.74rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
             >
-              📖 Font
+              Font
             </button>
             <button
               onClick={toggleHighContrast}
@@ -401,36 +395,22 @@ export default function Navbar() {
               aria-label="Toggle High Contrast"
               aria-pressed={settings.highContrast}
               style={{
-                border: "none",
+                border: "1px solid rgba(255,255,255,0.06)",
                 background: settings.highContrast
-                  ? "rgba(245, 158, 11, 0.3)"
-                  : "transparent",
-                color: settings.highContrast
-                  ? "#fbbf24"
-                  : "rgba(241, 245, 249, 0.7)",
-                padding: "4px 8px",
-                borderRadius: 8,
-                fontSize: "0.78rem",
+                  ? "rgba(245, 158, 11, 0.2)"
+                  : "rgba(255,255,255,0.04)",
+                color: "rgba(241, 245, 249, 0.9)",
+                padding: "6px 10px",
+                borderRadius: 10,
+                fontSize: "0.74rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 transition: "all 0.2s",
               }}
             >
-              ◐ Contrast
+              Contr
             </button>
           </div>
-
-          {/* Primary CTA */}
-          <button
-            onClick={handleStartLearning}
-            className="btn btn-primary btn-sm glow-indigo"
-            style={{
-              fontWeight: 700,
-              padding: "8px 18px",
-            }}
-          >
-            Start Learning 🚀
-          </button>
 
           {/* Mobile Hamburger Button */}
           <button
