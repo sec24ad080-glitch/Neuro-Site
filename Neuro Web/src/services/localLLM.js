@@ -5,7 +5,7 @@
  * NEVER calls OpenAI, Gemini, or any cloud API.
  */
 
-export const OLLAMA_BASE = 'http://localhost:11434'
+export const OLLAMA_BASE = '/ollama'
 export const DEFAULT_MODEL = 'gemma2:2b'
 
 // ──────────────────────────────────────────────
@@ -137,29 +137,10 @@ const OFFLINE_RESPONSES = [
   },
 ]
 
+import { getSmartSubjectAnswer } from './aiTutorEngine.js'
+
 function keywordFallback(message) {
-  const lower = message.toLowerCase()
-
-  // First check if user is asking about a specific lesson from local lesson data
-  try {
-    const allLessons = getAllLessons()
-    const matchedLesson = allLessons.find(l =>
-      lower.includes(l.title.toLowerCase()) ||
-      l.keyPoints.some(kp => lower.includes(kp.toLowerCase()))
-    )
-    if (matchedLesson) {
-      return `📖 **${matchedLesson.emoji} ${matchedLesson.title}** (${matchedLesson.subject.toUpperCase()})\n\n${matchedLesson.content}\n\n---\n💡 **Activity:** ${matchedLesson.activity}`
-    }
-  } catch (err) {
-    // fallback if import issue
-  }
-
-  // Check OFFLINE_RESPONSES
-  for (const entry of OFFLINE_RESPONSES) {
-    if (entry.keywords.some(k => lower.includes(k))) return entry.reply
-  }
-
-  return "That's a wonderful question! 🤔 I'm currently running in offline mode. You can ask me about **Math 🔢**, **English 📖**, **Science 🔬**, **Social Studies 🗺️**, or **Memory 🧠**! Or say 'Start lesson' to learn step by step! 📚"
+  return getSmartSubjectAnswer(message)
 }
 
 // ──────────────────────────────────────────────
@@ -235,7 +216,7 @@ export async function sendLocalLLMMessage(messages, userMessage, options = {}) {
 
   if (!modelAvailable) {
     return {
-      text: `⚠️ The AI model "${model}" is not installed yet. Please open a terminal and run:\n\n  ollama pull ${model}\n\nThen come back and try again! Meanwhile, I'll use my basic knowledge to help you. 😊\n\n${keywordFallback(userMessage)}`,
+      text: keywordFallback(userMessage),
       source: 'offline-keyword',
       error: `Model ${model} not found`
     }

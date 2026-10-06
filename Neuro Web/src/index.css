@@ -248,10 +248,20 @@ p  { line-height: 1.7; color: var(--text-secondary); }
 }
 
 /* ===== SCROLLBAR ===== */
-::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.4); border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(99,102,241,0.6); }
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.4);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.6);
+}
 
 /* ===== LAYOUT ===== */
 .page-container {
@@ -521,8 +531,14 @@ p  { line-height: 1.7; color: var(--text-secondary); }
 .hidden { display: none; }
 .relative { position: relative; }
 .text-center { text-align: center; }
-.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Safari on iOS, Samsung Internet, Opera */
+  width: 0;
+  height: 0;
+}
 
 /* ===== VOICE ORB ANIMATIONS ===== */
 @keyframes voice-orb-pulse {

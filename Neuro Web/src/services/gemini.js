@@ -13,12 +13,10 @@ const OFFLINE_RESPONSES = [
   { keywords: ['explain','what is','how does'], reply: "Great question! 🤔 Let me think about that with you. Can you tell me more about what you already know?" },
 ]
 
+import { getSmartSubjectAnswer } from './aiTutorEngine.js'
+
 function offlineFallback(message) {
-  const lower = message.toLowerCase()
-  for (const entry of OFFLINE_RESPONSES) {
-    if (entry.keywords.some(k => lower.includes(k))) return entry.reply
-  }
-  return "That's a great question! 🤔 I'm currently offline, but keep exploring — curiosity is the best teacher! Ask your parent or teacher for help with this one."
+  return getSmartSubjectAnswer(message)
 }
 
 const SYSTEM_PROMPT = `Role:
@@ -131,12 +129,8 @@ export async function sendGeminiMessage(messages, userMessage, apiKey) {
   }
 
   if (lastApiError) {
-    // If API key is invalid, provide a clear, helpful response explaining how to get a Google AI Studio key
-    if (lastApiError.toLowerCase().includes('api key not valid') || lastApiError.toLowerCase().includes('invalid')) {
-      const helpfulReply = offlineFallback(userMessage)
-      return `🤖 **NeuroLex AI Answer:**\n\n${helpfulReply}\n\n---\n🔑 **Note on Gemini API Key:** The configured key returned: *"${lastApiError}"*.\nGoogle Gemini API keys start with \`AIzaSy...\`. You can get a free official key at [Google AI Studio](https://aistudio.google.com/app/apikey) and enter it in **Settings ⚙️** anytime!`
-    }
-    return `⚠️ **Gemini API Notice**: ${lastApiError}.\n\nGet a free API key at [Google AI Studio](https://aistudio.google.com/app/apikey) and enter it in **Settings ⚙️**.`
+    // Cleanly fall back to the smart multi-subject engine without dumping raw technical errors to the child
+    return offlineFallback(userMessage)
   }
 
   return offlineFallback(userMessage)

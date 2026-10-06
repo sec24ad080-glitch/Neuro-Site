@@ -39,7 +39,7 @@ const NAV_LABELS = {
 };
 
 export default function Navbar() {
-  const { currentProfile, settings, updateSettings } = useApp();
+  const { currentProfile, settings } = useApp();
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -84,22 +84,6 @@ export default function Navbar() {
   const handleLoginClick = () => {
     setMobileMenuOpen(false);
     navigate("/login");
-  };
-
-  const toggleDyslexicFont = () => {
-    updateSettings({ dyslexicFont: !settings.dyslexicFont });
-  };
-
-  const toggleHighContrast = () => {
-    updateSettings({ highContrast: !settings.highContrast });
-  };
-
-  const toggleTheme = () => {
-    updateSettings({ theme: settings.theme === "light" ? "dark" : "light" });
-  };
-
-  const toggleReducedMotion = () => {
-    updateSettings({ reducedMotion: !settings.reducedMotion });
   };
 
   return (
@@ -198,7 +182,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 6,
+            gap: 4,
           }}
         >
           {(() => {
@@ -254,162 +238,64 @@ export default function Navbar() {
           })()}
         </nav>
 
-        {/* Accessibility & Action Buttons */}
+        {/* Action / CTA Buttons */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 12,
           }}
         >
-          {/* Quick Accessibility Toggles */}
           <div
-            className="desktop-nav-toggles"
+            className="desktop-nav-actions"
             style={{
               display: "flex",
               alignItems: "center",
-              gap: 8,
-              padding: "4px 10px",
-              borderRadius: 14,
-              background: "rgba(255, 255, 255, 0.04)",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
+              gap: 10,
             }}
           >
-            <select
-              value={settings.language || "en"}
-              onChange={(e) => updateSettings({ language: e.target.value })}
-              title="Select Webpage Language"
-              aria-label="Select Webpage Language"
-              style={{
-                border: "none",
-                background: "rgba(99, 102, 241, 0.18)",
-                color: "#ffffff",
-                padding: "7px 12px",
-                borderRadius: 10,
-                fontSize: "0.78rem",
-                fontWeight: 700,
-                cursor: "pointer",
-                outline: "none",
-                minWidth: settings.language === "ta" ? 110 : 88,
-              }}
-            >
-              <option
-                value="en"
-                style={{ background: "#111128", color: "#fff" }}
+            {!currentProfile ? (
+              <>
+                <button
+                  onClick={handleLoginClick}
+                  className="btn btn-secondary btn-sm"
+                  style={{
+                    padding: "8px 16px",
+                    fontSize: "0.85rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  👤 Login
+                </button>
+                <button
+                  onClick={handleStartLearning}
+                  className="btn btn-primary btn-sm"
+                  style={{
+                    padding: "8px 18px",
+                    fontSize: "0.85rem",
+                    fontWeight: 700,
+                  }}
+                >
+                  Start Learning 🚀
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={handleStartLearning}
+                className="btn btn-primary btn-sm"
+                style={{
+                  padding: "8px 18px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                }}
               >
-                EN
-              </option>
-              <option
-                value="ta"
-                style={{ background: "#111128", color: "#fff" }}
-              >
-                தமிழ்
-              </option>
-              <option
-                value="hi"
-                style={{ background: "#111128", color: "#fff" }}
-              >
-                हिन्दी
-              </option>
-            </select>
-            <button
-              onClick={toggleTheme}
-              title={
-                settings.theme === "light"
-                  ? "Switch to Dark Mode"
-                  : "Switch to Light Mode"
-              }
-              aria-label="Toggle Theme"
-              style={{
-                border: "1px solid rgba(255,255,255,0.06)",
-                background:
-                  settings.theme === "light"
-                    ? "rgba(99, 102, 241, 0.18)"
-                    : "rgba(255,255,255,0.04)",
-                color: "rgba(241, 245, 249, 0.9)",
-                padding: "6px 10px",
-                borderRadius: 10,
-                fontSize: "0.74rem",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.2s",
-              }}
-            >
-              {settings.theme === "light" ? "Light" : "Dark"}
-            </button>
-            <button
-              onClick={toggleReducedMotion}
-              title={
-                settings.reducedMotion ? "Enable Animations" : "Reduce Motion"
-              }
-              aria-label="Toggle Reduced Motion"
-              aria-pressed={settings.reducedMotion}
-              style={{
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: settings.reducedMotion
-                  ? "rgba(16, 185, 129, 0.2)"
-                  : "rgba(255,255,255,0.04)",
-                color: "rgba(241, 245, 249, 0.9)",
-                padding: "6px 10px",
-                borderRadius: 10,
-                fontSize: "0.74rem",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.2s",
-              }}
-            >
-              {settings.reducedMotion ? "Calm" : "Motion"}
-            </button>
-            <button
-              onClick={toggleDyslexicFont}
-              title={
-                settings.dyslexicFont
-                  ? "Switch to Standard Font"
-                  : "Enable Dyslexia-Friendly Font"
-              }
-              aria-label="Toggle Dyslexia-Friendly Font"
-              aria-pressed={settings.dyslexicFont}
-              style={{
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: settings.dyslexicFont
-                  ? "rgba(99, 102, 241, 0.2)"
-                  : "rgba(255,255,255,0.04)",
-                color: "rgba(241, 245, 249, 0.9)",
-                padding: "6px 10px",
-                borderRadius: 10,
-                fontSize: "0.74rem",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.2s",
-              }}
-            >
-              Font
-            </button>
-            <button
-              onClick={toggleHighContrast}
-              title={
-                settings.highContrast
-                  ? "Standard Contrast"
-                  : "Enable High Contrast"
-              }
-              aria-label="Toggle High Contrast"
-              aria-pressed={settings.highContrast}
-              style={{
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: settings.highContrast
-                  ? "rgba(245, 158, 11, 0.2)"
-                  : "rgba(255,255,255,0.04)",
-                color: "rgba(241, 245, 249, 0.9)",
-                padding: "6px 10px",
-                borderRadius: 10,
-                fontSize: "0.74rem",
-                fontWeight: 700,
-                cursor: "pointer",
-                transition: "all 0.2s",
-              }}
-            >
-              Contr
-            </button>
+                <span>{currentProfile.avatar || "🦊"}</span>
+                <span>Go to Dashboard 🚀</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile Hamburger Button */}
@@ -495,83 +381,6 @@ export default function Navbar() {
               gap: 12,
             }}
           >
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: 10,
-              }}
-            >
-              <button
-                onClick={toggleTheme}
-                style={{
-                  padding: "10px",
-                  borderRadius: 12,
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#f1f5f9",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                }}
-              >
-                {settings.theme === "light"
-                  ? "☀️ Mode: Light"
-                  : "🌙 Mode: Dark"}
-              </button>
-              <button
-                onClick={toggleReducedMotion}
-                style={{
-                  padding: "10px",
-                  borderRadius: 12,
-                  background: settings.reducedMotion
-                    ? "rgba(16, 185, 129, 0.25)"
-                    : "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#f1f5f9",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                }}
-              >
-                {settings.reducedMotion ? "⏹️ Motion: Calm" : "🏃 Motion: Full"}
-              </button>
-              <button
-                onClick={toggleDyslexicFont}
-                style={{
-                  padding: "10px",
-                  borderRadius: 12,
-                  background: settings.dyslexicFont
-                    ? "rgba(99, 102, 241, 0.25)"
-                    : "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#f1f5f9",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                }}
-              >
-                📖 Dyslexic Font
-              </button>
-              <button
-                onClick={toggleHighContrast}
-                style={{
-                  padding: "10px",
-                  borderRadius: 12,
-                  background: settings.highContrast
-                    ? "rgba(245, 158, 11, 0.25)"
-                    : "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  color: "#f1f5f9",
-                  cursor: "pointer",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                }}
-              >
-                ◐ Contrast
-              </button>
-            </div>
-
             <button
               onClick={handleStartLearning}
               className="btn btn-primary"
@@ -597,27 +406,25 @@ export default function Navbar() {
         .navbar-link {
           background: transparent;
           border: none;
-          color: rgba(241, 245, 249, 0.72);
+          color: rgba(241, 245, 249, 0.75);
           font-family: inherit;
-          font-size: 0.92rem;
+          font-size: 0.90rem;
           font-weight: 500;
-          padding: 8px 14px;
+          padding: 8px 12px;
           border-radius: 10px;
           cursor: pointer;
           transition: all 0.2s ease;
+          white-space: nowrap;
         }
         .navbar-link:hover {
           color: #ffffff;
           background: rgba(255, 255, 255, 0.07);
         }
-        @media (max-width: 992px) {
+        @media (max-width: 1024px) {
           .desktop-nav-menu {
             display: none !important;
           }
-          .desktop-nav-toggles {
-            display: none !important;
-          }
-          .desktop-nav-login {
+          .desktop-nav-actions {
             display: none !important;
           }
           .mobile-hamburger-btn {

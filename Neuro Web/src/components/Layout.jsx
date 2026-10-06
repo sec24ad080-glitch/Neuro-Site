@@ -5,13 +5,13 @@ import Notification from './Notification.jsx'
 import LexWidget from './LexWidget.jsx'
 
 const NAV_ITEMS = [
-  { to: '/dashboard', icon: '🏠', label: 'Home' },
-  { to: '/subjects',  icon: '📚', label: 'Subjects' },
-  { to: '/chatbot',   icon: '🤖', label: 'AI Tutor' },
-  { to: '/games',     icon: '🎮', label: 'Games' },
-  { to: '/writing',   icon: '✏️', label: 'Writing' },
-  { to: '/parent',    icon: '👨‍👩‍👧', label: 'Parent' },
-  { to: '/settings',  icon: '⚙️', label: 'Settings' },
+  { to: '/dashboard', icon: '🏠', label: 'Home', badge: null },
+  { to: '/subjects',  icon: '📚', label: 'Subjects', badge: 'K-5' },
+  { to: '/chatbot',   icon: '🤖', label: 'AI Tutor', badge: 'AI' },
+  { to: '/games',     icon: '🎮', label: 'Games', badge: 'Fun' },
+  { to: '/writing',   icon: '✏️', label: 'Writing', badge: null },
+  { to: '/parent',    icon: '👨‍👩‍👧', label: 'Parent', badge: null },
+  { to: '/settings',  icon: '⚙️', label: 'Settings', badge: null },
 ]
 
 export default function Layout() {
@@ -35,76 +35,176 @@ export default function Layout() {
     navigate('/')
   }
 
+  // Calculate level progress (e.g. 100 pts per level)
+  const currentPoints = currentProfile?.points || 0
+  const currentLevel = currentProfile?.level || Math.floor(currentPoints / 100) + 1
+  const pointsInCurrentLevel = currentPoints % 100
+  const progressPercent = Math.min(Math.max((pointsInCurrentLevel / 100) * 100, 15), 100)
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--bg-primary)' }}>
 
       {/* ── Sidebar (desktop) ── */}
-      <aside style={{
-        width: 230,
-        background: 'rgba(255,255,255,0.03)',
-        borderRight: '1px solid rgba(255,255,255,0.07)',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: '20px 12px',
-        position: 'fixed',
-        top: 0, left: 0, bottom: 0,
-        backdropFilter: 'blur(20px)',
-        zIndex: 100,
-        gap: 4,
-      }} className="sidebar-desktop">
-
-        {/* Brand */}
-        <div style={{ padding: '10px 10px 24px', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <aside
+        style={{
+          width: 245,
+          background: 'rgba(13, 13, 26, 0.94)',
+          borderRight: '1px solid rgba(255, 255, 255, 0.08)',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '20px 14px',
+          position: 'fixed',
+          top: 0, left: 0, bottom: 0,
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)',
+          zIndex: 100,
+          boxShadow: '4px 0 24px rgba(0, 0, 0, 0.35)',
+        }}
+        className="sidebar-desktop"
+      >
+        {/* Brand Header */}
+        <div style={{ padding: '6px 8px 22px', display: 'flex', alignItems: 'center', gap: 12 }}>
           <div style={{
-            width: 38, height: 38, borderRadius: 12,
-            background: 'linear-gradient(135deg,#6366f1,#a855f7)',
+            width: 42, height: 42, borderRadius: 14,
+            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: 20, boxShadow: '0 0 16px rgba(99,102,241,0.5)',
+            fontSize: 22, boxShadow: '0 0 20px rgba(99,102,241,0.55)',
             flexShrink: 0
           }}>🧠</div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: '1rem', color: '#f1f5f9' }}>NeuroLite</div>
-            <div style={{ fontSize: '0.7rem', color: 'rgba(241,245,249,0.4)' }}>AI Tutor</div>
+            <div style={{ fontWeight: 800, fontSize: '1.12rem', color: '#f8fafc', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
+              Neuro<span className="gradient-text">Lite</span>
+            </div>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: '0.68rem',
+              color: '#34d399',
+              fontWeight: 600,
+              marginTop: 3,
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#34d399', boxShadow: '0 0 8px #34d399' }} />
+              AI Learning Tutor
+            </div>
           </div>
         </div>
 
-        {/* Nav links */}
-        <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 3 }}>
+        {/* Navigation Links */}
+        <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 6 }}>
           {NAV_ITEMS.map(item => (
             <NavLink
               key={item.to}
               to={item.to}
-              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+              className={({ isActive }) => `sidebar-nav-item${isActive ? ' active' : ''}`}
+              style={({ isActive }) => ({
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '11px 14px',
+                borderRadius: 14,
+                textDecoration: 'none',
+                color: isActive ? '#ffffff' : 'rgba(241, 245, 249, 0.72)',
+                background: isActive
+                  ? 'linear-gradient(135deg, rgba(99, 102, 241, 0.22), rgba(168, 85, 247, 0.18))'
+                  : 'transparent',
+                border: isActive
+                  ? '1px solid rgba(99, 102, 241, 0.4)'
+                  : '1px solid transparent',
+                fontWeight: isActive ? 700 : 500,
+                fontSize: '0.92rem',
+                transition: 'all 0.22s cubic-bezier(0.4, 0, 0.2, 1)',
+                position: 'relative',
+                boxShadow: isActive ? '0 4px 18px rgba(99, 102, 241, 0.2)' : 'none',
+              })}
             >
-              <span style={{ fontSize: 18 }}>{item.icon}</span>
-              {item.label}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span style={{ fontSize: 20 }}>{item.icon}</span>
+                <span>{item.label}</span>
+              </div>
+              {item.badge && (
+                <span
+                  style={{
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    padding: '2px 8px',
+                    borderRadius: 999,
+                    background: item.badge === 'AI'
+                      ? 'linear-gradient(135deg, rgba(99,102,241,0.3), rgba(168,85,247,0.3))'
+                      : 'rgba(255,255,255,0.08)',
+                    color: item.badge === 'AI' ? '#c084fc' : 'rgba(241,245,249,0.75)',
+                    border: item.badge === 'AI' ? '1px solid rgba(168,85,247,0.4)' : '1px solid rgba(255,255,255,0.1)',
+                  }}
+                >
+                  {item.badge}
+                </span>
+              )}
             </NavLink>
           ))}
         </nav>
 
-        {/* Profile + logout */}
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.07)',
-          paddingTop: 14,
-          display: 'flex', flexDirection: 'column', gap: 10
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '6px 8px' }}>
+        {/* Profile Progress & Logout Card */}
+        <div
+          style={{
+            marginTop: 'auto',
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            borderRadius: 16,
+            padding: '12px 14px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{
-              width: 34, height: 34, borderRadius: '50%',
-              background: 'linear-gradient(135deg,#6366f1,#a855f7)',
+              width: 38, height: 38, borderRadius: '50%',
+              background: 'linear-gradient(135deg, #6366f1, #a855f7)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 18, flexShrink: 0
+              fontSize: 20, flexShrink: 0,
+              boxShadow: '0 0 12px rgba(99,102,241,0.35)',
             }}>{currentProfile?.avatar || '🦊'}</div>
-            <div style={{ overflow: 'hidden' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#f1f5f9', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                {currentProfile?.name}
+            <div style={{ overflow: 'hidden', flex: 1 }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#f8fafc', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {currentProfile?.name || 'Explorer'}
               </div>
-              <div style={{ fontSize: '0.7rem', color: 'rgba(241,245,249,0.4)' }}>
-                Lv {currentProfile?.level || 1} · {currentProfile?.points || 0} pts
+              <div style={{ fontSize: '0.72rem', color: 'rgba(241,245,249,0.55)', fontWeight: 500 }}>
+                Level {currentLevel} · {currentPoints} pts
               </div>
             </div>
           </div>
-          <button className="btn btn-secondary btn-sm" onClick={handleLogout} style={{ width: '100%' }}>
+
+          {/* Mini XP Progress Bar */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.65rem', color: 'rgba(241,245,249,0.5)', marginBottom: 4 }}>
+              <span>Progress</span>
+              <span>{pointsInCurrentLevel}/100 XP</span>
+            </div>
+            <div style={{ height: 6, background: 'rgba(255,255,255,0.08)', borderRadius: 999, overflow: 'hidden' }}>
+              <div style={{
+                height: '100%',
+                width: `${progressPercent}%`,
+                background: 'linear-gradient(90deg, #6366f1, #a855f7)',
+                borderRadius: 999,
+                transition: 'width 0.6s ease',
+              }} />
+            </div>
+          </div>
+
+          <button
+            className="btn btn-secondary btn-sm"
+            onClick={handleLogout}
+            style={{
+              width: '100%',
+              padding: '8px',
+              fontSize: '0.80rem',
+              borderRadius: 10,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 6,
+            }}
+          >
             🚪 Logout
           </button>
         </div>
@@ -169,7 +269,7 @@ export default function Layout() {
       )}
 
       {/* ── Main content ── */}
-      <main style={{ marginLeft: 230, flex: 1, minHeight: '100vh' }} className="main-content">
+      <main style={{ marginLeft: 245, flex: 1, minHeight: '100vh' }} className="main-content">
         <Outlet />
       </main>
 
@@ -180,6 +280,14 @@ export default function Layout() {
       {notification && <Notification notification={notification} />}
 
       <style>{`
+        .sidebar-nav-item:hover {
+          background: rgba(255, 255, 255, 0.06) !important;
+          color: #ffffff !important;
+          transform: translateX(3px);
+        }
+        .sidebar-nav-item.active:hover {
+          background: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(168, 85, 247, 0.24)) !important;
+        }
         @media (max-width: 768px) {
           .sidebar-desktop { display: none !important; }
           .mobile-header   { display: flex !important; }

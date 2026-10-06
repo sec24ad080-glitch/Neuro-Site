@@ -38,7 +38,7 @@ export default function OllamaSetupCard({ onCheckAgain, suggestedModel = DEFAULT
             Local AI Not Running
           </p>
           <p style={{ margin: 0, fontSize: '0.78rem', color: 'rgba(241,245,249,0.55)', marginTop: 2 }}>
-            Ollama ({OLLAMA_BASE}) is not reachable — no cloud API will be used
+            Ollama is not running (http://localhost:11434) — NeuroLite Offline Knowledge Engine is active!
           </p>
         </div>
       </div>
