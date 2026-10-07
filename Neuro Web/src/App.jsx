@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { useApp } from './context/AppContext.jsx'
 import Layout from './components/Layout.jsx'
 import LoadingScreen from './components/LoadingScreen.jsx'
@@ -45,6 +46,7 @@ export default function App() {
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <SpeedInsights />
     </Suspense>
   )
 }
